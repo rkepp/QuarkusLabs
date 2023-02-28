@@ -1,0 +1,21 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.sdde.bccr.fi.cr">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <ws:ObtenerIndicadoresEconomicos>
+            <!--Optional:-->
+            <ws:Indicador>318</ws:Indicador>
+            <!--Optional:-->
+            <ws:FechaInicio>27/12/2022</ws:FechaInicio>
+            <!--Optional:-->
+            <ws:FechaFinal>27/12/2022</ws:FechaFinal>
+            <!--Optional:-->
+            <ws:Nombre>Gera</ws:Nombre>
+            <!--Optional:-->
+            <ws:SubNiveles>N</ws:SubNiveles>
+            <!--Optional:-->
+            <ws:CorreoElectronico>gcerdas1293@gmail.com</ws:CorreoElectronico>
+            <!--Optional:-->
+            <ws:Token>DAIMGO9A11</ws:Token>
+        </ws:ObtenerIndicadoresEconomicos>
+    </soapenv:Body>
+</soapenv:Envelope>
