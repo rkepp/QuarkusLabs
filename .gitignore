@@ -2,7 +2,7 @@
 # Edit at https://www.gitignore.io/?templates=vim,java,macos,emacs,gradle,intellij,sublimetext,visualstudiocode
 
 # maven
-.mvn/*
+#.mvn/*
 
 # IntelliJ
 out/
