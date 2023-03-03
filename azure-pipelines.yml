@@ -10,8 +10,8 @@ steps:
     connectionType: 'OpenShift Connection Service'
     openshiftService: 'OpenShift cluster'
     version: '4.2'
-    cmd: 'oc project QuarkusLabs'
-  displayName: Switch to QuarkusLabs project
+    cmd: 'oc project myapp'
+  displayName: Switch to myapp project
 - task: oc-cmd@3
   inputs:
     connectionType: 'OpenShift Connection Service'
