@@ -1,8 +1,3 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
 trigger:
 - main
 
@@ -10,13 +5,38 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: Maven@3
+- task: oc-cmd@3
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift cluster'
+    version: '4.2'
+    cmd: 'oc project QuarkusLabs'
+  displayName: Switch to QuarkusLabs project
+- task: oc-cmd@3
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift cluster'
+    version: '4.2'
+    cmd: 'oc new-app https://github.com/rkepp/QuarkusLabs'
+    ignoreFlag: true
+- task: oc-cmd@3
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift cluster'
+    version: '4.2'
+    cmd: 'oc expose svc QuarkusLabs'
+    ignoreFlag: true
+  displayName: Create route
+- task: oc-cmd@3
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift cluster'
+    version: '4.2'
+    cmd: 'oc start-build QuarkusLabs --follow'
+  displayName: Start new build
+- task: oc-cmd@3
+  inputs:
+    connectionType: 'OpenShift Connection Service'
+    openshiftService: 'OpenShift cluster'
+    version: '4.2'
+    cmd: 'oc status'
